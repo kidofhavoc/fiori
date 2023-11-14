@@ -1,0 +1,39 @@
+<mvc:View controllerName="sap.btp.ux400solving.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+        <content>
+        <VBox class='sapUiLargeMargin'>
+
+        <Text text="밑에 랜덤 버튼을 누르면 랜덤한 수가 나옴"/>
+        <Input id='Rinput' type= 'Number' change="onValueChange"/>
+        <Button text="랜덤" press='onRandomPress'/>
+        </VBox>
+        <VBox class="sapUiLargeMargin">
+            <t:Table
+				rows="{list>/rows}"
+				selectionMode="MultiToggle"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="목록 랜덤 디펜스"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="Value" />
+						<t:template>
+							<Text text="{list>text}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+				</t:columns>
+			</t:Table>
+        </VBox>
+        <Button class="sapUiLargeMargin" text='조합식 보기' press='Listview'/>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,11 @@
+<c:FragmentDefinition xmlns:c="sap.ui.core" xmlns="sap.m">
+  <Dialog contentWidth="40%" contentHeight="50%" id="idDialog">
+     <content>
+        <Text text="네놈의 내장을 찢고 죽인다 존나큰 덩치 내장도 존나게 크겠지" />
+        <!-- <Text text="존나큰 덩치 내장도 존나게 크겠지" /> -->
+     </content>
+      <endButton>
+       <Button text="버서크모드 종료 더이상 무적이 아니군" press="onClose" />
+       </endButton>
+  </Dialog>
+</c:FragmentDefinition>

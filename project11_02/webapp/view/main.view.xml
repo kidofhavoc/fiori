@@ -1,0 +1,27 @@
+<mvc:View controllerName="project1102.controller.main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" floatingFooter="true">
+
+        <VBox>
+            <Button id="idbtn" text="그?건 몰?루" type="Critical" press="onclick"/>
+            <Text id="otext" text="그런건가...">
+            </Text>
+
+            <Input id="idInput" change="onChange" value ="몰?루는건가..."/>
+            <!-- </Input> -->
+
+        </VBox>
+
+        	<footer>
+
+            <Toolbar>
+
+              <ToolbarSpacer/>
+              <Button text="Approve"/>
+
+            </Toolbar>
+
+	  	    </footer>
+    </Page>
+</mvc:View>

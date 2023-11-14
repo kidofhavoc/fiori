@@ -1,0 +1,175 @@
+<mvc:View controllerName="odata.project1107.controller.View7"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    	xmlns:core="sap.ui.core"
+		xmlns:fb="sap.ui.comp.filterbar">
+	<ObjectPageLayout id="ObjectPageLayout" useIconTabBar="true" upperCaseAnchorBar="false">
+    <!-- useIconTabBar가 트루면 빠릿하게 바로 움직이고 페일이면 스르륵 움직임 -->
+		<headerTitle>
+			<ObjectPageHeader objectTitle="Section sample">
+            <actions>
+            
+            </actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+<headerContent>
+        <core:Fragment fragmentName='odata.project1107.view.fragment.dialog' type="XML"/>
+            <m:Input id='input' width='200px' showValueHelp='true' valueHelpRequest='ripandtear' placeholder="Customer Id"/>
+            <m:Button width="100px" type='Emphasized' text="서치" press="onSearch" />
+
+			<fb:FilterBar id="filterbar" filterContainerWidth="30rem" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem name="Name" label="Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<m:MultiComboBox
+											name="Name"
+											selectionChange=".onSelectionChange"
+											items="{
+												path: '/ProductNames',
+												templateShareable: true
+											}"
+										>
+											<core:Item key="{key}" text="{name}"/>
+										</m:MultiComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem name="DateFromTo" label="DateFromTo" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+									<m:DateRangeSelection id = "input2" displayFormat="yyyy-MM-dd" dateValue="{main>/OrderDateFrom}" secondDateValue="{main>/OrderDateTo}"/>
+<!-- 
+										<m:MultiComboBox
+											name="Category"
+											selectionChange=".onSelectionChange"
+											items="{
+												path: '/ProductCategories',
+												templateShareable: true
+											}"
+										>
+											<core:Item key="{key}" text="{name}"/>
+										</m:MultiComboBox> -->
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem name="SupplierName" label="SupplierName" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<m:Input id='input1'  value='{json>/CustomerID}' width='200px' showValueHelp='true' valueHelpRequest='ripandtear' placeholder="Customer Id">
+										</m:Input>
+									</fb:control>
+								</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+</headerContent>
+		<sections>
+
+			<ObjectPageSection titleUppercase="false" title="Section 5">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<m:Button text="go Detail" press="onNavDetail"/>
+
+                            <m:Text text="테스트1" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" title="Section 4">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+	<m:Table id="idTable"
+		inset="false"
+		mode="SingleSelectMaster"
+		selectionChange="onSelectionChange"
+		items="{
+			path: '/Orders',
+			filters : [{
+				path : 'CustomerID',
+				operator : 'EQ',
+				value1 : 'VINET',
+				value2 : ''
+			}],
+			sorter : [{
+				path : 'EmployeeID',
+				descending : true
+			}]
+		}">
+		<m:headerToolbar>
+			<m:OverflowToolbar>
+				<m:content>
+					<m:Title text="Products" level="H2"/>
+					<m:ToolbarSpacer />
+				</m:content>
+			</m:OverflowToolbar>
+		</m:headerToolbar>
+		<m:infoToolbar>
+			<m:OverflowToolbar>
+				<m:Label text="Wide range of available products"/>
+			</m:OverflowToolbar>
+		</m:infoToolbar>
+		<m:columns>
+			<m:Column>
+				<m:Text text="OrderID" /> 
+			</m:Column>
+            			<m:Column>
+				<m:Text text="CustomerID" /> 
+			</m:Column>
+            			<m:Column>
+				<m:Text text="EmployeeID" /> 
+			</m:Column>
+            			<m:Column>
+				<m:Text text="OrderDate" /> 
+			</m:Column>
+            			<m:Column>
+				<m:Text text="RequiredDate" /> 
+			</m:Column>
+            			<m:Column>
+				<m:Text text="ShippedDate" /> 
+			</m:Column>
+             <m:Column>
+				<m:Text text="Freight sum" /> 
+			</m:Column>
+		</m:columns>
+		<m:items>
+			<m:ColumnListItem vAlign="Middle">
+				<m:cells>
+					<m:Text text="{OrderID}" />
+
+					<m:Text text="{CustomerID}" />
+
+					<m:Text text="{EmployeeID}" />
+<!-- formatter 적용시 one way binding 방식이 적용됨 -->
+					<m:Text text="{
+                        path:'OrderDate',
+                        formatter: '.fnDateToString'}"/>
+
+					<m:Text text="{
+                        path:'RequiredDate',
+                        formatter: '.fnDateToString'}" />
+
+					<m:Text text="{path:'ShippedDate',
+                    formatter: '.fnDateToString'}"/>
+
+                    <m:Text text="{
+                        parts : [
+                        {path : 'ShipVia'},
+                        {path : 'Freight'}
+                        ],
+                        formatter : '.fnFreightSum'
+                    }"/>
+				</m:cells>
+                
+			</m:ColumnListItem>
+		</m:items>
+	</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>

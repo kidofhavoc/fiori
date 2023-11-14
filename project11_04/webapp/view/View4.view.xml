@@ -1,0 +1,63 @@
+<mvc:View controllerName="project1104.controller.View4"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:table="sap.ui.table">
+    <Page id="page" title="{test>/list/2/name}">
+        <content>
+        <VBox>
+        <Button press="onClick" text="아무키"/>
+        <Input value="{test>/aaaa}" />
+        <Text text="{test>/txtValue}"/>
+                    <table:Table id="idTable"
+				rows="{test>/list}"
+				selectionMode="MultiToggle"
+				paste="onPaste"
+				rowActionCount="1"
+				ariaLabelledBy="title">
+				<table:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+						<ToolbarSpacer/>
+						<Button press="gunzin" text="떠나버린 건진이" icon="sap-icon://add"/>
+						<Button press="onDelete" text="나가버린 건진이" icon="sap-icon://delete"/>
+
+					</OverflowToolbar>
+				</table:extension>
+				<table:rowActionTemplate>
+				 <table:RowAction>
+				 <table:items>
+				 <table:RowActionItem icon="sap-icon://decline" press="gunzin2"/>
+				 </table:items>
+				 </table:RowAction>
+				</table:rowActionTemplate>
+				<table:columns>
+					<table:Column  >
+						<Label text="name" />
+						<table:template>
+							<!-- <Text text="{test>name}" wrapping="false" /> -->
+							<Input value="{test>name}"/>
+						</table:template>
+					</table:Column>
+				</table:columns>
+                <table:columns>
+					<table:Column  >
+						<Label text="age" />
+						<table:template>
+							<Text text="{test>age}" wrapping="false" />
+						</table:template>
+					</table:Column>
+				</table:columns>
+                <table:columns>
+					<table:Column  >
+						<Label text="tel" />
+						<table:template>
+							<Text text="{test>tel}" wrapping="false" />
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+        </VBox>
+        
+        </content>
+        
+    </Page>
+</mvc:View>

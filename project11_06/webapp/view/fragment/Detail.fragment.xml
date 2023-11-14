@@ -1,0 +1,8 @@
+<c:FragmentDefinition xmlns:c="sap.ui.core" xmlns="sap.m">
+    <Panel headerText="프래깅패널">
+        <content>
+        <Button text="프래그먼트" />
+        <Input value="프래그먼트" />
+        </content>
+    </Panel>
+</c:FragmentDefinition>
