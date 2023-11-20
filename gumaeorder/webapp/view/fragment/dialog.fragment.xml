@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog
+        id="detailDialog"
+        title="상세 정보"
+        draggable="true"
+        resizable="true"
+        contentWidth="300px"
+        contentHeight="200px"
+        beginButton="detailDialogCloseBtn">
+
+        <VBox class="sapUiSmallMargin">
+            <Label text="자재명" />
+            <Text text="{path: 'test>name'}" />
+
+            <Label text="이번달 구매오더 주문량" />
+            <Text text="{path: 'test>test'}" />
+
+            <Label text="총합 구매오더 주문량" />
+            <Text text="{path: 'test>test2'}" />
+        </VBox>
+    </Dialog>
+
+</core:FragmentDefinition>

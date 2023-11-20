@@ -24,26 +24,39 @@
 		        id="Table1"
 				rows="{test>/list}"
 				selectionMode="Single"
-				paste="onPaste"
-				ariaLabelledBy="title">
+				rowSelectionChange="onPoSelect"
+				ariaLabelledBy="title"
+				selectionBehavior="RowOnly">
 				<extension>
 					<m:OverflowToolbar style="Clear">
-						<m:Title id="title" text="구매오더 주문량 분석"/>
+						<m:Title id="title" text="구매오더 주문량 분석" />
 					</m:OverflowToolbar>
 				</extension>
 				<columns>
-					<Column width="9rem">
-						<m:Label text="구매오더번호" />
+					<Column width="9rem" hAlign="Center">
+						<m:Label text="자재명" />
 						<template>
 							<m:Text text="{test>name}" wrapping="false" />
 						</template>
                     </Column>
-                    <Column width="9rem">
-						<m:Label text="공급업체코드" />
+                    <Column width="11rem" hAlign="Center">
+						<m:Label text="이번달 구매오더 주문량" />
 						<template>
 							<m:Text text="{test>test}" wrapping="false" />
 						</template>
                     </Column>
+					<Column width="10rem" hAlign="Center">
+						<m:Label text="총합 구매오더 주문량" />
+						<template>
+							<m:Text text="{test>test2}" wrapping="false" />
+						</template>
+                    </Column>
+					<Column width="11rem" hAlign="Center">
+						<m:Label text="물품별 구매오더 동향" />
+						<template>
+							<m:Button text="보기" press="handleDetailsPress"/>
+						</template>
+					</Column>
 				</columns>   
 			</Table>
 		</m:content>
