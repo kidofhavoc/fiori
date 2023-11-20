@@ -1,7 +1,88 @@
 <mvc:View controllerName="gumaeorder.gumaeorder.controller.main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+    height="100%">
+	<m:Page
+		showHeader="false"
+
+		enableScrolling="false"
+		class="sapUiContentPadding">
+		<m:content>
+			<m:ComboBox items="{test>/list}">
+				<c:Item key="{test>name}" text="{test>name}" />
+			</m:ComboBox>
+			<Table
+				rows="{test>/list}"
+				selectionMode="Single"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Title id="title" text="Products"/>
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column width="9rem">
+						<m:Label text="구매오더번호" />
+						<template>
+							<m:Text text="{test>name}" wrapping="false" />
+						</template>
+                    </Column>
+                    <Column width="9rem">
+						<m:Label text="공급업체코드" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+                    <Column width="9rem">
+						<m:Label text="자재코드" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+                    <Column width="9rem">
+						<m:Label text="자재명" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+                    <Column width="9rem">
+						<m:Label text="발주량" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+					<Column width="9rem">
+						<m:Label text="단위" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+					<Column width="9rem">
+						<m:Label text="단가" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+					<Column width="9rem">
+						<m:Label text="총 가격" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+					<Column width="9rem">
+						<m:Label text="입고예정일" />
+						<template>
+							<m:Text text="{test>test}" wrapping="false" />
+						</template>
+                    </Column>
+					
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
 </mvc:View>
