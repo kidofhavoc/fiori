@@ -12,11 +12,12 @@
 		enableScrolling="false"
 		class="sapUiContentPadding">
 		<m:content>
-			<m:ComboBox items="{test>/list}">
+			<m:ComboBox items="{test>/list}" showClearIcon="true" selectionChange="onComboBoxChange"> 
 				<c:Item key="{test>name}" text="{test>name}" />
 			</m:ComboBox>
+			<!-- 위 콤보박스에 자재명을 넣을것 -->
 			<Table
-				rows="{test>/list}"
+				rows="{test>/selectedItems}"
 				selectionMode="Single"
 				paste="onPaste"
 				ariaLabelledBy="title">
@@ -81,7 +82,7 @@
 						</template>
                     </Column>
 					
-				</columns>
+				</columns>   
 			</Table>
 		</m:content>
 	</m:Page>

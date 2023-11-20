@@ -21,6 +21,16 @@ sap.ui.define([
                 ]}
                 var oModel = new JSONModel(oData)
                 this.getView().setModel(oModel, 'test')
+            },
+
+            onComboBoxChange: function (oEvent) {
+                var oSelectedItem = oEvent.getParameter('selectedItem');
+                var sSelectedName = oSelectedItem ? oSelectedItem.getKey() : null;
+            
+                // 선택된 아이템을 배열에 추가
+                var aSelectedItems = this.getView().getModel('test').getProperty('/selectedItems') || [];
+                aSelectedItems.push(sSelectedName);
+                this.getView().getModel('test').setProperty('/selectedItems', aSelectedItems);
             }
         });
     });
