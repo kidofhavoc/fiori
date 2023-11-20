@@ -1,11 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,JSONModel) {
+    function (Controller,JSONModel, Filter) {
         "use strict";
 
         return Controller.extend("gumaeorder.gumaeorder.controller.main", {
@@ -23,14 +24,23 @@ sap.ui.define([
                 this.getView().setModel(oModel, 'test')
             },
 
-            onComboBoxChange: function (oEvent) {
-                var oSelectedItem = oEvent.getParameter('selectedItem');
-                var sSelectedName = oSelectedItem ? oSelectedItem.getKey() : null;
+            onSelectionChange: function () {
+                // debugger;
+                var oComboBox = this.getView().byId("comboBox1");
+                var oSelectedItem = oComboBox.getSelectedItem();
+                var oSelectedKey = oSelectedItem ? oSelectedItem.getKey() : null;
+                var oFilter = [];
+                
+                var oTable = this.getView().byId("Table1");
+                var oBinding = oTable.getBinding("rows");
             
-                // 선택된 아이템을 배열에 추가
-                var aSelectedItems = this.getView().getModel('test').getProperty('/selectedItems') || [];
-                aSelectedItems.push(sSelectedName);
-                this.getView().getModel('test').setProperty('/selectedItems', aSelectedItems);
+                if (oSelectedKey) {
+                    oFilter.push(new Filter('name', 'EQ', oSelectedKey));
+                    oBinding.filter(oFilter);
+                } else {
+                    oBinding.filter([]);
+                }
             }
+            
         });
     });

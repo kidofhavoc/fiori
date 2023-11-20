@@ -12,18 +12,23 @@
 		enableScrolling="false"
 		class="sapUiContentPadding">
 		<m:content>
-			<m:ComboBox items="{test>/list}" showClearIcon="true" selectionChange="onComboBoxChange"> 
+			<m:ComboBox 
+				id="comboBox1" 
+				items="{test>/list}" 
+				showClearIcon="true" 
+				selectionChange=".onSelectionChange"> 
 				<c:Item key="{test>name}" text="{test>name}" />
 			</m:ComboBox>
 			<!-- 위 콤보박스에 자재명을 넣을것 -->
 			<Table
-				rows="{test>/selectedItems}"
+		        id="Table1"
+				rows="{test>/list}"
 				selectionMode="Single"
 				paste="onPaste"
 				ariaLabelledBy="title">
 				<extension>
 					<m:OverflowToolbar style="Clear">
-						<m:Title id="title" text="Products"/>
+						<m:Title id="title" text="구매오더 주문량 분석"/>
 					</m:OverflowToolbar>
 				</extension>
 				<columns>
@@ -39,49 +44,6 @@
 							<m:Text text="{test>test}" wrapping="false" />
 						</template>
                     </Column>
-                    <Column width="9rem">
-						<m:Label text="자재코드" />
-						<template>
-							<m:Text text="{test>test}" wrapping="false" />
-						</template>
-                    </Column>
-                    <Column width="9rem">
-						<m:Label text="자재명" />
-						<template>
-							<m:Text text="{test>test}" wrapping="false" />
-						</template>
-                    </Column>
-                    <Column width="9rem">
-						<m:Label text="발주량" />
-						<template>
-							<m:Text text="{test>test}" wrapping="false" />
-						</template>
-                    </Column>
-					<Column width="9rem">
-						<m:Label text="단위" />
-						<template>
-							<m:Text text="{test>test}" wrapping="false" />
-						</template>
-                    </Column>
-					<Column width="9rem">
-						<m:Label text="단가" />
-						<template>
-							<m:Text text="{test>test}" wrapping="false" />
-						</template>
-                    </Column>
-					<Column width="9rem">
-						<m:Label text="총 가격" />
-						<template>
-							<m:Text text="{test>test}" wrapping="false" />
-						</template>
-                    </Column>
-					<Column width="9rem">
-						<m:Label text="입고예정일" />
-						<template>
-							<m:Text text="{test>test}" wrapping="false" />
-						</template>
-                    </Column>
-					
 				</columns>   
 			</Table>
 		</m:content>
