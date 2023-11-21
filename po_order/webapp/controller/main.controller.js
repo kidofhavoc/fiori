@@ -41,7 +41,7 @@ sap.ui.define([
 
             _showGraph: function(){
                 if(!this._oDialog){
-                    this._oDialog = sap.ui.xmlfragment("gumaeorder.gumaeorder.view.fragment.dialog", this);
+                    this._oDialog = sap.ui.xmlfragment("poorder.poorder.view.fragment.dialog", this);
                     this.getView().addDependent(this._oDialog);
                 }
                 this._oDialog.open();

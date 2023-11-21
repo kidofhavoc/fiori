@@ -1,0 +1,45 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:core="sap.ui.core" 
+xmlns:viz="sap.viz.ui5.controls"  
+xmlns:viz.data="sap.viz.ui5.data"
+xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+<Dialog
+    id="detailDialog"
+    title="상세 정보"
+    draggable="true"
+    resizable="true"
+    contentWidth="700px"
+    contentHeight="700px"
+    beginButton="detailDialogCloseBtn">
+
+    <VBox class="sapUiSmallMargin">
+        <Label text="자재별 구매오더 동향" />
+        <Text text="{path: 'test>name'}" />
+
+
+       <viz:VizFrame vizType="line" id="idVizFrame" legendVisible="true">
+        <viz:dataset>
+        <viz.data:FlattenedDataset id="Dataset" data="{/POinnerSet}">
+            <viz.data:dimensions>
+                <viz.data:DimensionDefinition name="가격" value="{Price}"/>
+            </viz.data:dimensions>
+
+            <viz.data:measures>
+                <viz.data:MeasureDefinition name="자재명" value="{Mtname}"/>
+            </viz.data:measures>
+        </viz.data:FlattenedDataset>
+        </viz:dataset>
+
+        <viz:feeds>
+        <viz.feeds:FeedItem uid="categoryAxis" values="가격" type="Dimension" /> <!--x농-->
+        <viz.feeds:FeedItem uid="valueAxis" values="자재명"  type="Measure" /> <!--y쭉-->
+        </viz:feeds>
+                        <!-- line,column,bar ... => categoryAxis + valueAxis
+                        pie, donut, ... => color + size -->
+        </viz:VizFrame>
+
+        <Button text="목록보기" press="backToTheList"/>
+    </VBox>
+</Dialog>
+</core:FragmentDefinition>
