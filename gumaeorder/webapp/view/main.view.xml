@@ -40,19 +40,19 @@
 						</template>
                     </Column>
                     <Column width="11rem" hAlign="Center">
-						<m:Label text="이번달 구매오더 주문량" />
+						<m:Label text="이번달 구매오더 주문횟수" />
 						<template>
 							<m:Text text="{test>test}" wrapping="false" />
 						</template>
                     </Column>
 					<Column width="10rem" hAlign="Center">
-						<m:Label text="총합 구매오더 주문량" />
+						<m:Label text="총합 구매오더 주문횟수" />
 						<template>
 							<m:Text text="{test>test2}" wrapping="false" />
 						</template>
                     </Column>
 					<Column width="11rem" hAlign="Center">
-						<m:Label text="물품별 구매오더 동향" />
+						<m:Label text="자재별 구매오더 동향" />
 						<template>
 							<m:Button text="보기" press="handleDetailsPress"/>
 						</template>

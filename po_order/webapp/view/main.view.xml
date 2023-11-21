@@ -1,7 +1,64 @@
 <mvc:View controllerName="poorder.poorder.controller.main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+    height="100%">
+	<m:Page
+		showHeader="false"
+
+		enableScrolling="false"
+		class="sapUiContentPadding">
+		<m:content>
+			<m:ComboBox 
+				id="comboBox1" 
+				items="{/POinnerSet}" 
+				showClearIcon="true" 
+				selectionChange=".onSelectionChange"> 
+				<c:Item key="{Mtname}" text="{Mtname}" />
+                
+			</m:ComboBox>
+			<!-- 위 콤보박스에 자재명을 넣을것 -->
+			<Table
+		        id="Table1"
+				rows="{/POinnerSet}"
+				selectionMode="Single"
+				rowSelectionChange="onPoSelect"
+				ariaLabelledBy="title"
+				selectionBehavior="RowOnly">
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Title id="title" text="구매오더 주문량 분석" />
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column width="9rem" hAlign="Center">
+						<m:Label text="자재명" />
+						<template>
+							<m:Text text="{Mtname}" wrapping="false" />
+						</template>
+                    </Column>
+                    <Column width="11rem" hAlign="Center">
+						<m:Label text="이번달 구매오더 주문횟수" />
+						<template>
+							<m:Text text="1" wrapping="false" />
+						</template>
+                    </Column>
+					<Column width="10rem" hAlign="Center">
+						<m:Label text="총합 구매오더 주문횟수" />
+						<template>
+							<m:Text text="2" wrapping="false" />
+						</template>
+                    </Column>
+					<Column width="11rem" hAlign="Center">
+						<m:Label text="자재별 구매오더 동향" />
+						<template>
+							<m:Button text="보기" press="handleDetailsPress"/>
+						</template>
+					</Column>
+				</columns>   
+			</Table>
+		</m:content>
+	</m:Page>
 </mvc:View>
