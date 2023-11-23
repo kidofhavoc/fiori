@@ -14,7 +14,33 @@ sap.ui.define([
             onInit: function () {
                 var oData = {POinnerSet :[ ]}
                 var oModel = new JSONModel(oData)
+
                 this.getView().setModel(oModel, 'test')
+
+                this.getOwnerComponent().getModel().read("/cdsvSet", {
+                    success: function(oReturn) {
+                        var arr = oReturn.results;
+                        var results = [];
+                        var oSum = arr.reduce(function(pre, item, idx){
+                            if(!pre[item.MtCod]) {
+                                pre[item.MtCod] = item;
+                                pre[item.MtCod].Mmstaflag = Number(pre[item.MtCod].Mmstaflag);
+                            }else{
+                                pre[item.MtCod].Mmstaflag += Number(item.Mmstaflag);
+                            }
+                        
+                            return pre;
+                        }, {});
+
+                        for(var i in oSum){
+                            if(oSum.hasOwnProperty(i)){
+                                results.push(oSum[i]);
+                            }
+                        }
+
+                        oModel.setProperty("/list", results);
+                    }
+                })
             },
 
             onSelectionChange: function () {
@@ -30,12 +56,14 @@ sap.ui.define([
                 if (oSelectedKey) {
                     oFilter.push(new Filter('Mtname', 'EQ', oSelectedKey));
                     oBinding.filter(oFilter);
+
                 } else {
                     oBinding.filter([]);
+
                 }
                 
             },
-            handleDetailsPress: function() {
+            onPoSelect: function() {
                 this._showGraph()
             },
 
@@ -50,7 +78,9 @@ sap.ui.define([
                 if (this._oDialog) {
                     this._oDialog.close();
                 }
-            }
+            },
+
+            
             
         });
     });

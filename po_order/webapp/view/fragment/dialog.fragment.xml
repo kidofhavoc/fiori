@@ -39,7 +39,7 @@ xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
                         pie, donut, ... => color + size -->
         </viz:VizFrame>
 
-        <Button text="목록보기" press="backToTheList"/>
+        <Button text="닫기" press="backToTheList"/>
     </VBox>
 </Dialog>
 </core:FragmentDefinition>

@@ -1,64 +1,108 @@
 <mvc:View controllerName="poorder.poorder.controller.main"
-	xmlns="sap.ui.table"
+	xmlns:t="sap.ui.table"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:u="sap.ui.unified"
 	xmlns:c="sap.ui.core"
-	xmlns:m="sap.m"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout"
     height="100%">
-	<m:Page
-		showHeader="false"
+		<f:DynamicPage id="dynamicPageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="구매오더 승인량 분석 페이지"/>
+					</f:heading>
+					<f:expandedContent>
+						<Label text="이곳에서 구매오더 생성 등락폭 조회가 가능합니다"/>
+					</f:expandedContent>
+					<f:snappedContent>
+						<Label text="구매오더 승인량 분석"/>
+					</f:snappedContent>
+					<f:snappedTitleOnMobile>
+						<Title text="구매오더 분석"/>
+					</f:snappedTitleOnMobile>
 
-		enableScrolling="false"
-		class="sapUiContentPadding">
-		<m:content>
-			<m:ComboBox 
+				</f:DynamicPageTitle>
+			</f:title>
+
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+						<FlexBox
+								alignItems="Start"
+								justifyContent="SpaceBetween">
+							<items>
+								<Panel
+										backgroundDesign="Transparent"
+										class="sapUiNoContentPadding">
+									<content>
+										<layout:HorizontalLayout
+												allowWrapping="true">
+											<layout:VerticalLayout
+													class="sapUiMediumMarginEnd">
+												<ObjectAttribute title="입고위치" text="CAP01"/>
+											</layout:VerticalLayout>
+											<layout:VerticalLayout>
+												<ObjectAttribute title="현재 상태"/>
+												<ObjectStatus text="조회 가능" state="Success" />
+											</layout:VerticalLayout>
+										</layout:HorizontalLayout>
+									</content>
+								</Panel>
+							</items>
+						</FlexBox>
+				</f:DynamicPageHeader>
+			</f:header>
+
+			<f:content>
+            <VBox>
+            			<ComboBox 
 				id="comboBox1" 
-				items="{/POinnerSet}" 
+				items="{test>/list}" 
 				showClearIcon="true" 
 				selectionChange=".onSelectionChange"> 
-				<c:Item key="{Mtname}" text="{Mtname}" />
+				<c:Item key="{test>Mtname}" text="{test>Mtname}" />
                 
-			</m:ComboBox>
-			<!-- 위 콤보박스에 자재명을 넣을것 -->
-			<Table
+			</ComboBox>
+
+				<t:Table
 		        id="Table1"
-				rows="{/POinnerSet}"
+				rows="{test>/list}"
 				selectionMode="Single"
 				rowSelectionChange="onPoSelect"
 				ariaLabelledBy="title"
 				selectionBehavior="RowOnly">
-				<extension>
-					<m:OverflowToolbar style="Clear">
-						<m:Title id="title" text="구매오더 주문량 분석" />
-					</m:OverflowToolbar>
-				</extension>
-				<columns>
-					<Column width="9rem" hAlign="Center">
-						<m:Label text="자재명" />
-						<template>
-							<m:Text text="{Mtname}" wrapping="false" />
-						</template>
-                    </Column>
-                    <Column width="11rem" hAlign="Center">
-						<m:Label text="이번달 구매오더 주문횟수" />
-						<template>
-							<m:Text text="1" wrapping="false" />
-						</template>
-                    </Column>
-					<Column width="10rem" hAlign="Center">
-						<m:Label text="총합 구매오더 주문횟수" />
-						<template>
-							<m:Text text="2" wrapping="false" />
-						</template>
-                    </Column>
-					<Column width="11rem" hAlign="Center">
-						<m:Label text="자재별 구매오더 동향" />
-						<template>
-							<m:Button text="보기" press="handleDetailsPress"/>
-						</template>
-					</Column>
-				</columns>   
-			</Table>
-		</m:content>
-	</m:Page>
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="구매오더 주문량 분석" />
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="자재명" />
+						<t:template>
+							<Text text="{test>Mtname}" wrapping="false" />
+						</t:template>
+                    </t:Column>
+                    <t:Column width="11rem" hAlign="Center">
+						<Label text="현재재고량" />
+						<t:template>
+							<Text text="{test>Camt}" wrapping="false" />
+						</t:template>
+                    </t:Column>
+					<t:Column width="10rem" hAlign="Center">
+						<Label text="총합 구매오더 주문횟수" />
+						<t:template>
+							<Text text="{test>Mmstaflag}" wrapping="false" />
+						</t:template>
+                    </t:Column>
+
+				</t:columns>   
+				</t:Table>
+                </VBox>
+			</f:content>
+
+		</f:DynamicPage>
 </mvc:View>
