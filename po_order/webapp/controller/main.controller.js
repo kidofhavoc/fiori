@@ -13,8 +13,23 @@ sap.ui.define([
         return Controller.extend("poorder.poorder.controller.main", {
             onInit: function () {
                 var oData = {POinnerSet :[ ]}
+                var oData2 = {Monthlist :[
+                    { month: "1월", quantity: 0 },
+                    { month: "2월", quantity: 0 },
+                    { month: "3월", quantity: 0 },
+                    { month: "4월", quantity: 0 },
+                    { month: "5월", quantity: 0 },
+                    { month: "6월", quantity: 0 },
+                    { month: "7월", quantity: 0 },
+                    { month: "8월", quantity: 0 },
+                    { month: "9월", quantity: 0 },
+                    { month: "10월", quantity: 0 },
+                    { month: "11월", quantity: 0 },
+                    { month: "12월", quantity: 0 }
+                ]}
                 var oModel = new JSONModel(oData)
-
+                var oModel2 = new JSONModel(oData2)
+                this.getView().setModel(oModel2, 'test2')
                 this.getView().setModel(oModel, 'test')
 
                 this.getOwnerComponent().getModel().read("/cdsvSet", {

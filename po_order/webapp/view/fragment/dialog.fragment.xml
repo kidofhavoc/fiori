@@ -20,13 +20,13 @@ xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
 
        <viz:VizFrame vizType="line" id="idVizFrame" legendVisible="true">
         <viz:dataset>
-        <viz.data:FlattenedDataset id="Dataset" data="{/POinnerSet}">
+        <viz.data:FlattenedDataset id="Dataset" data="{test>/list}">
             <viz.data:dimensions>
-                <viz.data:DimensionDefinition name="가격" value="{Price}"/>
+                <viz.data:DimensionDefinition name="월 정보" value="{test>}"/>
             </viz.data:dimensions>
 
             <viz.data:measures>
-                <viz.data:MeasureDefinition name="자재명" value="{Mtname}"/>
+                <viz.data:MeasureDefinition name="수량" value="{test>intmonth10}"/>
             </viz.data:measures>
         </viz.data:FlattenedDataset>
         </viz:dataset>

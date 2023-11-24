@@ -15,7 +15,7 @@
 						<Title text="구매오더 승인량 분석 페이지"/>
 					</f:heading>
 					<f:expandedContent>
-						<Label text="이곳에서 구매오더 생성량에 대한 등락폭 조회가 가능합니다"/>
+						<Label text="이곳에서 구매오더 생성 등락폭 조회가 가능합니다"/>
 					</f:expandedContent>
 					<f:snappedContent>
 						<Label text="구매오더 승인량 분석"/>
@@ -92,26 +92,8 @@
 							<Text text="{test>Camt}" wrapping="false" />
 						</t:template>
                     </t:Column>
-                    <t:Column width="8rem" hAlign="Center">
-						<Label text="단위" />
-						<t:template>
-							<Text text="{test>Unit}" wrapping="false" />
-						</t:template>
-                    </t:Column>
-					<t:Column width="12rem" hAlign="Center">
-						<Label text="자재평균가" />
-						<t:template>
-							<Text text="{test>AvgPrice}" wrapping="false" />
-						</t:template>
-                    </t:Column>
-                    					<t:Column width="10rem" hAlign="Center">
-						<Label text="이번달 구매오더 승인횟수" />
-						<t:template>
-							<Text text="{test>Mmstaflag}" wrapping="false" />
-						</t:template>
-                    </t:Column>
-                    					<t:Column width="12rem" hAlign="Center">
-						<Label text="총합 구매오더 승인횟수" />
+					<t:Column width="10rem" hAlign="Center">
+						<Label text="총합 구매오더 주문횟수" />
 						<t:template>
 							<Text text="{test>Mmstaflag}" wrapping="false" />
 						</t:template>
