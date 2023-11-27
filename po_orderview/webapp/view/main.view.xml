@@ -112,7 +112,7 @@
                     <ColumnListItem>
                         <cells>
                             <Text text="{PoNum}" />
-                            <Text text="{VenCod}" />
+                            <Link text="{VenCod}" press="onVendorCodePress" />
                             <Text text="{PtCod}" />
                             <Text text="{MtCod}" />
                             <Text text="{Mtmany}" />
