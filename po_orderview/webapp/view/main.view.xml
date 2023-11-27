@@ -1,0 +1,138 @@
+<mvc:View
+    controllerName="poorderview.poorderview.controller.main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    height="100%">
+
+    <f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="진행중인 구매오더 조회"/>
+                </f:heading>
+                <f:expandedContent>
+                    <Label text="완료되거나 취소된 구매오더를 제외한 구매오더를 조회합니다"/>
+                </f:expandedContent>
+                <f:snappedContent>
+                    <Label text=""/>
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text=""/>
+                </f:snappedTitleOnMobile>
+                <f:content>
+                    <OverflowToolbar>
+                        <!-- 여기에 필요한 내용을 추가하세요 -->
+                    </OverflowToolbar>
+                </f:content>
+
+                <f:navigationActions>
+                    <Button icon="sap-icon://decline" type="Transparent" />
+                </f:navigationActions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="위치" text="{Warehouse}"/>
+                        <ObjectAttribute title="통로" text="{Hallway}"/>
+                        <ObjectAttribute title="선반" text="{Rack}"/>
+                    </layout:VerticalLayout>
+
+                    <layout:VerticalLayout>
+                        <ObjectAttribute title="가용성"/>
+                        <ObjectStatus text="{Availability}" state="{AvailabilityState}"/>
+                    </layout:VerticalLayout>
+                </layout:HorizontalLayout>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <Table id="idPoorderTable"
+                   sticky="HeaderToolbar,ColumnHeaders"
+                   inset="false"
+                   items="{
+                       path: '/POinnerSet',
+                       sorter: {
+                           path: 'PoNum',
+                           descending: true
+                       }
+                   }"
+                   class="sapFDynamicPageAlignContent"
+                   width="auto">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Products" level="H2"/>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="구매오더번호"/>
+                    </Column>
+                    <Column>
+                        <Text text="공급업체코드"/>
+                    </Column>
+                    <Column>
+                        <Text text="창고코드"/>
+                    </Column>
+                    <Column>
+                        <Text text="자재코드"/>
+                    </Column>
+                    <Column>
+                        <Text text="발주량"/>
+                    </Column>
+                    <Column>
+                        <Text text="단위"/>
+                    </Column>
+                    <Column>
+                        <Text text="단가"/>
+                    </Column>
+                    <Column>
+                        <Text text="통화"/>
+                    </Column>
+                    <Column>
+                        <Text text="도착 예정일"/>
+                    </Column>
+                    <Column>
+                        <Text text="자재명"/>
+                    </Column>
+                    <Column>
+                        <Text text="총 가격"/>
+                    </Column>
+                    <Column>
+                        <Text text="상태값"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{PoNum}" />
+                            <Text text="{VenCod}" />
+                            <Text text="{PtCod}" />
+                            <Text text="{MtCod}" />
+                            <Text text="{Mtmany}" />
+                            <Text text="{Unit}" />
+                            <Text text="{Price}" />
+                            <Text text="{Currency}" />
+                            <Text text="{path: 'EarDt', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short', UTC: true, pattern: 'yyyy-MM-dd' }}" />
+                            <Text text="{Mtname}" />
+                            <Text text="{TotalPrice}" />
+<core:Icon xmlns:core="sap.ui.core" src="{= ${/Mmstaflag} === '0' ? 'sap-icon://warning' :
+                                            ${/Mmstaflag} === '1' ? 'sap-icon://accept' :
+                                            ${/Mmstaflag} === '2' ? 'sap-icon://success' :
+                                            ${/Mmstaflag} === '3' ? 'sap-icon://delete' : 'sap-icon://warning'}" />
+
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
