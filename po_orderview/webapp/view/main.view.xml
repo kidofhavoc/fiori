@@ -12,10 +12,10 @@
         <f:title>
             <f:DynamicPageTitle>
                 <f:heading>
-                    <Title text="진행중인 구매오더 조회"/>
+                    <Title text="구매오더 조회"/>
                 </f:heading>
                 <f:expandedContent>
-                    <Label text="완료되거나 취소된 구매오더를 제외한 구매오더를 조회합니다"/>
+                    <Label text="구매오더와 해당 구매오더를 송신한"/>
                 </f:expandedContent>
                 <f:snappedContent>
                     <Label text=""/>
@@ -25,7 +25,6 @@
                 </f:snappedTitleOnMobile>
                 <f:content>
                     <OverflowToolbar>
-                        <!-- 여기에 필요한 내용을 추가하세요 -->
                     </OverflowToolbar>
                 </f:content>
 
@@ -106,7 +105,7 @@
                         <Text text="총 가격"/>
                     </Column>
                     <Column>
-                        <Text text="상태값"/>
+                        <Text text="현재 상태"/>
                     </Column>
                 </columns>
                 <items>
@@ -122,13 +121,16 @@
                             <Text text="{Currency}" />
                             <Text text="{path: 'EarDt', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short', UTC: true, pattern: 'yyyy-MM-dd' }}" />
                             <Text text="{Mtname}" />
-                            <Text text="{TotalPrice}" />
-<core:Icon xmlns:core="sap.ui.core" src="{= ${/Mmstaflag} === '0' ? 'sap-icon://warning' :
-                                            ${/Mmstaflag} === '1' ? 'sap-icon://accept' :
-                                            ${/Mmstaflag} === '2' ? 'sap-icon://success' :
-                                            ${/Mmstaflag} === '3' ? 'sap-icon://delete' : 'sap-icon://warning'}" />
-
-
+                            <Text text="{= Number(${TotalPrice}) / 100 }" />
+<core:Icon xmlns:core="sap.ui.core" 
+           src="{= ${Mmstaflag} === '0' ? 'sap-icon://warning' :
+                  ${Mmstaflag} === '1' ? 'sap-icon://accept' :
+                  ${Mmstaflag} === '2' ? 'sap-icon://status-completed' :
+                  ${Mmstaflag} === '3' ? 'sap-icon://delete' : 'sap-icon://warning'}" 
+           color="{= ${Mmstaflag} === '0' ? 'yellow' :
+                    ${Mmstaflag} === '1' ? 'green' :
+                    ${Mmstaflag} === '2' ? 'darkgreen' :
+                    ${Mmstaflag} === '3' ? 'red' : 'black'}" />
                         </cells>
                     </ColumnListItem>
                 </items>
