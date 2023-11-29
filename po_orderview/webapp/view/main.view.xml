@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:launchpad="sap.ushell.ui.launchpad"
     controllerName="poorderview.poorderview.controller.main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
@@ -112,7 +112,12 @@
                     <ColumnListItem>
                         <cells>
                             <Text text="{PoNum}" />
-                            <Link text="{VenCod}" press="onVendorCodePress" />
+                            		<Button
+			                                id="showQuickView"
+		                                	text="{VenCod}"
+		                                	press="onVendorCodePress"
+		                                	class="sapUiSmallMarginBottom"
+		                                	ariaHasPopup="Dialog" />
                             <Text text="{PtCod}" />
                             <Text text="{MtCod}" />
                             <Text text="{Mtmany}" />

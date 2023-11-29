@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:card="sap.f.cards">
+    <Dialog
+        id="detailDialog"
+        title="상세 정보"
+        draggable="true"
+        resizable="true"
+        contentWidth="700px"
+        contentHeight="700px"
+    >
+        <f:Card class="sapUiMediumMargin" width="300px">
+            <f:header>
+                <card:Header title="{Venname}" subtitle="{Venaddr}" />
+            </f:header>
+            <f:content>
+                <List class="sapUiSmallMarginBottom" showSeparators="None">
+                    <CustomListItem>
+                        <HBox alignItems="Center" justifyContent="SpaceBetween">
+                            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                <Title level="H3" text="Vendor Code: {VenCod}" />
+                                <Text text="Vendor ID: {Venid}" />
+                                <Text text="Vendor Name: {Venname}" />
+                                <Text text="Vendor Address: {Venaddr}" />
+                            </VBox>
+                        </HBox>
+                    </CustomListItem>
+                </List>
+            </f:content>
+        </f:Card>
+        <Button text="나가기" press="backToTheList" />
+    </Dialog>
+</core:FragmentDefinition>

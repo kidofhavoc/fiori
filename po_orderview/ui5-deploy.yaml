@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: poorderview.poorderview
+  #윗부분 고칠것
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://saphana01.konyang.ac.kr:8080/
+          client: "400"
+        app:
+          name: Z03SE_MM_01F
+          #윗부분 고칠것 
+          description: 구매오더 조회 및 승인 프로그램
+          #윗부분 고쳐도 됨 자유임
+          package: Z03SE   
+          #패키지(Z03SE)
+          transport: "KYHK900100"    
+          #CTS 번호
+        exclude:
+          - /test/
