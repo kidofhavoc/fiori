@@ -15,7 +15,7 @@
                     <Title text="구매오더 조회"/>
                 </f:heading>
                 <f:expandedContent>
-                    <Label text="구매오더와 해당 구매오더를 송신한"/>
+                    <Label text="구매오더를 조회하고 아직 승인되지 않은 구매오더를 승인 할 수 있습니다"/>
                 </f:expandedContent>
                 <f:snappedContent>
                     <Label text=""/>
@@ -29,7 +29,7 @@
                 </f:content>
 
                 <f:navigationActions>
-                    <Button icon="sap-icon://decline" type="Transparent" />
+                    <!-- <Button icon="sap-icon://decline" type="Transparent" /> -->
                 </f:navigationActions>
             </f:DynamicPageTitle>
         </f:title>
@@ -39,15 +39,11 @@
             <f:DynamicPageHeader pinnable="true">
                 <layout:HorizontalLayout allowWrapping="true">
                     <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                        <ObjectAttribute title="위치" text="{Warehouse}"/>
-                        <ObjectAttribute title="통로" text="{Hallway}"/>
-                        <ObjectAttribute title="선반" text="{Rack}"/>
+                        <ObjectAttribute title="창고명" text="CAP01"/>
+                        <ObjectAttribute title="스토리지" text="CAW"/>
+                        <ObjectAttribute title="위치" text="천안 혁신밸리"/>
                     </layout:VerticalLayout>
 
-                    <layout:VerticalLayout>
-                        <ObjectAttribute title="가용성"/>
-                        <ObjectStatus text="{Availability}" state="{AvailabilityState}"/>
-                    </layout:VerticalLayout>
                 </layout:HorizontalLayout>
             </f:DynamicPageHeader>
         </f:header>
