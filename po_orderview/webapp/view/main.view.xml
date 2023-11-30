@@ -90,22 +90,22 @@
                         <Text text="단위"/>
                     </Column>
                     <Column>
-                        <Text text="단가"/>
+                        <Text text="단가(원)"/>
                     </Column>
                     <Column>
-                        <Text text="통화"/>
-                    </Column>
-                    <Column>
-                        <Text text="도착 예정일"/>
+                        <Text text="총 가격(원)"/>
                     </Column>
                     <Column>
                         <Text text="자재명"/>
                     </Column>
                     <Column>
-                        <Text text="총 가격"/>
+                        <Label text="도착 예정일"/>
                     </Column>
-                    <Column>
+                    <Column hAlign="Center">
                         <Text text="현재 상태"/>
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="승인"/>
                     </Column>
                 </columns>
                 <items>
@@ -116,26 +116,26 @@
 			                                id="showQuickView"
 		                                	text="{VenCod}"
 		                                	press="onVendorCodePress"
-		                                	class="sapUiSmallMarginBottom"
+		                                	class=""
 		                                	ariaHasPopup="Dialog" />
                             <Text text="{PtCod}" />
                             <Text text="{MtCod}" />
-                            <Text text="{Mtmany}" />
+                            <Text text="{Mtmany}" class="align-right" textAlign="Right" />
                             <Text text="{Unit}" />
-                            <Text text="{Price}" />
-                            <Text text="{Currency}" />
-                            <Text text="{path: 'EarDt', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short', UTC: true, pattern: 'yyyy-MM-dd' }}" />
+                            <Text text="{= (parseFloat(${Price})).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}" textAlign="Right" width="100%"/>
+                            <Label text="{= (parseFloat(${TotalPrice}) / 100).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}" textAlign="Right" width="100%"/>
                             <Text text="{Mtname}" />
-                            <Text text="{= Number(${TotalPrice}) / 100 }" />
+                            <Text text="{path: 'EarDt', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short', UTC: true, pattern: 'yyyy-MM-dd' }}" />
 <core:Icon xmlns:core="sap.ui.core" 
            src="{= ${Mmstaflag} === '0' ? 'sap-icon://warning' :
-                  ${Mmstaflag} === '1' ? 'sap-icon://accept' :
+                  ${Mmstaflag} === '1' ? 'sap-icon://inventory' :
                   ${Mmstaflag} === '2' ? 'sap-icon://status-completed' :
                   ${Mmstaflag} === '3' ? 'sap-icon://delete' : 'sap-icon://warning'}" 
            color="{= ${Mmstaflag} === '0' ? 'yellow' :
                     ${Mmstaflag} === '1' ? 'green' :
                     ${Mmstaflag} === '2' ? 'darkgreen' :
                     ${Mmstaflag} === '3' ? 'red' : 'black'}" />
+                            <Button visible="{= ${Mmstaflag} === '0'}" text="승인" press="onApproval" type="Emphasized"/>
                         </cells>
                     </ColumnListItem>
                 </items>
@@ -143,3 +143,7 @@
         </f:content>
     </f:DynamicPage>
 </mvc:View>
+<!-- <Text width='100%' textAlign="End" text="{
+                                        path : 'local>Bfprice',
+                                        type : 'sap.ui.model.type.Float'
+                                    }" wrapping="false" /> -->

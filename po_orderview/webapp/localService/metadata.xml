@@ -66,13 +66,32 @@
                 <Property Name="Mmstaflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="상태플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Count" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="구매오더 생성 횟수" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
+            <EntityType Name="vdcdsv" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="VenCod"/>
+                </Key>
+                <Property Name="VenCod" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="공급업체 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Venname" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="공급업체 명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Venphone" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="공급업체 연락처" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Venaddr" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="공급업체 주소" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Venid" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="공급업체 사업자번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MtCod" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="자재코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mtname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="자재명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="21" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="단가" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="통화" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Minorder" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:unit="Unit" sap:label="최소주문명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Leadtime" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="배송소요일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcountNum" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="계좌번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Delflag" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="삭제 플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
             <EntityType Name="POHeader" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="PoNum"/>
                 </Key>
                 <Property Name="PoNum" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="구매오더번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="PoMan" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="창고담당자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PoDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="발주날짜" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PoDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="발주날짜" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Mmstaflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="상태플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="TotalPrice" Type="Edm.Decimal" Nullable="false" Precision="21" Scale="3" sap:unicode="false" sap:label="총 가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
@@ -96,6 +115,7 @@
                 <EntitySet Name="POinnerSet" EntityType="Z03SE_GW_MM01_SRV.POinner" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="MTlistSet" EntityType="Z03SE_GW_MM01_SRV.MTlist" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="cdsvSet" EntityType="Z03SE_GW_MM01_SRV.cdsv" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="vdcdsvSet" EntityType="Z03SE_GW_MM01_SRV.vdcdsv" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="POHeaderSet" EntityType="Z03SE_GW_MM01_SRV.POHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="POItemSet" EntityType="Z03SE_GW_MM01_SRV.POItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
             </EntityContainer>

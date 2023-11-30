@@ -1,62 +1,80 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel", 
     "sap/ui/core/Fragment",
     "sap/m/MessageBox",
     "sap/m/MessageToast"
-], function (Controller, Fragment, MessageBox, MessageToast) {
+], function (Controller, JSONModel, Fragment, MessageBox, MessageToast) {
     "use strict";
 
     return Controller.extend("poorderview.poorderview.controller.main", {
         onInit: function () {
-            // 초기화 시 필요한 작업 수행
+            var oData = {vdcdsvSet:[]}
+            var oModel = new JSONModel(oData)
+            this.getView().setModel(oModel, "main");
         },
 
-        onVendorCodePress: function() {
-            // 모델 초기화
-            var oModel = new sap.ui.model.odata.v2.ODataModel("your_service_url", true);
+        onVendorCodePress: function(oEvent){
+            var oModel  = this.getView().getModel();
+            var sPath = oEvent.getSource().getParent().getBindingContextPath();
+            var oRow = oModel.getProperty(sPath);
+            var path = oModel.createKey("/vdcdsvSet", {
+                VenCod : oRow.VenCod
+            });
 
-            // 다이얼로그 표시
-            this._showGraph(oModel);
+            oModel.read(path, {
+                success: function(oReturn) {
+                    this._openDialog(oReturn);
+                }.bind(this)
+            })
+
         },
-        
-        _showGraph: function(oModel){
-            if (!this._oDialog) {
+
+        _openDialog: function(oVendor) {
+
+            var oDialog = sap.ui.getCore().byId("detailDialog");
+            if (!oDialog) { 
                 Fragment.load({
                     name: "poorderview.poorderview.view.QuickViewCard",
-                    controller: this
+                    type : 'XML',
+                    controller : this
                 }).then(function(oDialog){
-                    this._oDialog = oDialog;
-                    this.getView().addDependent(this._oDialog);
-
-                    // 데이터 바인딩 함수 호출
-                    this._bindCardData(oModel);
-
-                    this._oDialog.open();
-                }.bind(this));
-            } else {
-                this._oDialog.open();
+                    oDialog.setModel(new JSONModel(oVendor), 'vendor');
+                    oDialog.open();
+                });
+            }else{
+                oDialog.getModel('vendor').setData(oVendor);
+                oDialog.open();
             }
         },
 
-        _bindCardData: function(oModel) {
-            // 데이터 바인딩 로직
-            var sVenCod = "VEN00001"; // 예시로 고정값 사용
-            oModel.read("/vdcdsvSet('" + sVenCod + "')", {
-                success: function(oData) {
-                    // 데이터를 프래그먼트에 바인딩
-                    var oCardModel = new sap.ui.model.json.JSONModel(oData);
-                    this._oDialog.setModel(oCardModel, "oModel");
-                }.bind(this),
+        onApproval: function(oEvent) {
+            var sPath = oEvent.getSource().getParent().getBindingContextPath();
+            var oDataModel = this.getView().getModel()
+            var oRow = oDataModel.getProperty(sPath);
+            var oBody = {
+                "Mmstaflag" : "1"
+            }
+
+            var sUpdatePath = oDataModel.createKey("/POHeaderSet", {
+                PoNum : oRow.PoNum
+            })
+
+            oDataModel.update(sUpdatePath, oBody, {
+                success: function(oReturn) {
+                    console.log("성공! ", oReturn);
+                    oDataModel.refresh(true);
+                    sap.m.MessageToast.show("승인하였습니다.");
+
+                },
                 error: function(oError) {
-                    MessageToast.show("Error reading OData service");
+
                 }
-            });
+            })
         },
 
-        backToTheList: function () {
-            if (this._oDialog) {
-                this._oDialog.close();
-            }
+        backToTheList: function(oEvent) {
+            oEvent.getSource().getParent().close();
         }
     });
 });
