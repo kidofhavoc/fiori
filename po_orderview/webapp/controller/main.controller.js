@@ -50,27 +50,34 @@ sap.ui.define([
 
         onApproval: function(oEvent) {
             var sPath = oEvent.getSource().getParent().getBindingContextPath();
-            var oDataModel = this.getView().getModel()
+            var oDataModel = this.getView().getModel();
             var oRow = oDataModel.getProperty(sPath);
             var oBody = {
-                "Mmstaflag" : "1"
-            }
-
-            var sUpdatePath = oDataModel.createKey("/POHeaderSet", {
-                PoNum : oRow.PoNum
-            })
-
-            oDataModel.update(sUpdatePath, oBody, {
-                success: function(oReturn) {
-                    console.log("성공! ", oReturn);
-                    oDataModel.refresh(true);
-                    sap.m.MessageToast.show("승인하였습니다.");
-
-                },
-                error: function(oError) {
-
+                "Mmstaflag": "1"
+            };
+        
+            MessageBox.confirm(
+                "승인하시겠습니까?",
+                {
+                    onClose: function (oAction) {
+                        if (oAction === MessageBox.Action.OK) {
+                            var sUpdatePath = oDataModel.createKey("/POHeaderSet", {
+                                PoNum: oRow.PoNum
+                            });
+        
+                            oDataModel.update(sUpdatePath, oBody, {
+                                success: function (oReturn) {
+                                    console.log("성공! ", oReturn);
+                                    oDataModel.refresh(true);
+                                    sap.m.MessageToast.show("승인하였습니다.");
+                                },
+                                error: function (oError) {
+                                }
+                            });
+                        }
+                    }
                 }
-            })
+            );
         },
 
         backToTheList: function(oEvent) {

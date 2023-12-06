@@ -92,6 +92,12 @@
 							<Text text="{test>Camt}" wrapping="false" />
 						</t:template>
                     </t:Column>
+						<t:Column width="10rem" hAlign="Center">
+						<Label text="평균 단가" />
+						<t:template>
+							<Text text="{test>AvgPrice}" wrapping="false" />
+						</t:template>
+                    </t:Column>
 					<t:Column width="10rem" hAlign="Center">
 						<Label text="총합 구매오더 주문횟수" />
 						<t:template>

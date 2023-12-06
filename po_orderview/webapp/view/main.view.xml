@@ -125,7 +125,7 @@
 <core:Icon xmlns:core="sap.ui.core" 
            src="{= ${Mmstaflag} === '0' ? 'sap-icon://warning' :
                   ${Mmstaflag} === '1' ? 'sap-icon://inventory' :
-                  ${Mmstaflag} === '2' ? 'sap-icon://status-completed' :
+                  ${Mmstaflag} === '2' ? 'sap-icon://complete' :
                   ${Mmstaflag} === '3' ? 'sap-icon://delete' : 'sap-icon://warning'}" 
            color="{= ${Mmstaflag} === '0' ? 'yellow' :
                     ${Mmstaflag} === '1' ? 'green' :

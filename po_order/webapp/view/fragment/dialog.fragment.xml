@@ -19,21 +19,20 @@ xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
 
 
        <viz:VizFrame vizType="line" id="idVizFrame" legendVisible="true">
-        <viz:dataset>
-        <viz.data:FlattenedDataset id="Dataset" data="{test>/list}">
+    <viz:dataset>
+        <viz.data:FlattenedDataset id="Dataset" data="{test2>/Monthlist}">
             <viz.data:dimensions>
-                <viz.data:DimensionDefinition name="월 정보" value="{test>}"/>
+                <viz.data:DimensionDefinition name="월 정보" value="{test2>month}"/>
             </viz.data:dimensions>
-
             <viz.data:measures>
-                <viz.data:MeasureDefinition name="수량" value="{test>intmonth10}"/>
+                <viz.data:MeasureDefinition name="수량" value="{test2>quantity}"/>
             </viz.data:measures>
         </viz.data:FlattenedDataset>
-        </viz:dataset>
+    </viz:dataset>
 
         <viz:feeds>
-        <viz.feeds:FeedItem uid="categoryAxis" values="가격" type="Dimension" /> <!--x농-->
-        <viz.feeds:FeedItem uid="valueAxis" values="자재명"  type="Measure" /> <!--y쭉-->
+        <viz.feeds:FeedItem uid="categoryAxis" values="월 정보" type="Dimension" /> <!--x농-->
+        <viz.feeds:FeedItem uid="valueAxis" values="수량"  type="Measure" /> <!--y쭉-->
         </viz:feeds>
                         <!-- line,column,bar ... => categoryAxis + valueAxis
                         pie, donut, ... => color + size -->

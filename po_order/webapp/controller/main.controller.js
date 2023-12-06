@@ -14,21 +14,21 @@ sap.ui.define([
             onInit: function () {
                 var oData = {POinnerSet :[ ]}
                 var oData2 = {Monthlist :[
-                    { month: "1월", quantity: 0 },
-                    { month: "2월", quantity: 0 },
-                    { month: "3월", quantity: 0 },
-                    { month: "4월", quantity: 0 },
-                    { month: "5월", quantity: 0 },
-                    { month: "6월", quantity: 0 },
-                    { month: "7월", quantity: 0 },
-                    { month: "8월", quantity: 0 },
-                    { month: "9월", quantity: 0 },
-                    { month: "10월", quantity: 0 },
-                    { month: "11월", quantity: 0 },
-                    { month: "12월", quantity: 0 }
+                    { month: "1월", quantity: 4 },
+                    { month: "2월", quantity: 4 },
+                    { month: "3월", quantity: 4 },
+                    { month: "4월", quantity: 5 },
+                    { month: "5월", quantity: 5 },
+                    { month: "6월", quantity: 5 },
+                    { month: "7월", quantity: 7 },
+                    { month: "8월", quantity: 8 },
+                    { month: "9월", quantity: 7 },
+                    { month: "10월", quantity: 6 },
+                    { month: "11월", quantity: 5 },
+                    { month: "12월", quantity: 3 }
                 ]}
                 var oModel = new JSONModel(oData)
-                var oModel2 = new JSONModel(oData2)
+                var oModel2 = new JSONModel(oData2);
                 this.getView().setModel(oModel2, 'test2')
                 this.getView().setModel(oModel, 'test')
 
@@ -54,12 +54,13 @@ sap.ui.define([
                         }
 
                         oModel.setProperty("/list", results);
+                        oModel2.setProperty("/list2", results)
                     }
                 })
             },
 
             onSelectionChange: function () {
-                // debugger;
+                // debugger;    
                 var oComboBox = this.getView().byId("comboBox1");
                 var oSelectedItem = oComboBox.getSelectedItem();
                 var oSelectedKey = oSelectedItem ? oSelectedItem.getKey() : null;
